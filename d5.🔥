@@ -1,0 +1,63 @@
+fn aoc_5_1():
+    with open("input.txt") as f:
+        var lines = f.readlines()
+    lines = [line.strip() for line in lines]
+    lines = [l for l in lines if l]
+
+    var seeds = lines[0].split(" ")[1:]
+
+    var translations = []
+    for line in lines[1:]:
+        if ":" in line:
+            translations.append([])
+        else:
+            translations[-1].append(line)
+
+    for translation in translations:
+        for i in range(len(seeds)):
+            var seed = int(seeds[i])
+            for t in translation:
+                t = t.split(" ")
+                if seed >= int(t[1]) and seed <= int(t[1]) + int(t[2]):
+                    seeds[i] = int(t[0]) + int(seed) - int(t[1])
+                    break
+
+    return min(seeds)
+
+
+fn aoc_5_2():
+    with open("input.txt") as f:
+        var lines = f.readlines()
+    lines = [line.strip() for line in lines]
+    lines = [l for l in lines if l]
+
+    var seeds = lines[0].split(" ")[1:]
+    seeds = [int(s) for s in seeds]
+
+    var ranged_seeds = []
+    for i in range(0,1+ len(seeds) // 2, 2):
+        for j in range(seeds[i + 1]):
+            ranged_seeds.append(seeds[i] + j)
+    print(ranged_seeds)
+    
+    var translations = []
+    for line in lines[1:]:
+        if ":" in line:
+            translations.append([])
+        else:
+            translations[-1].append(line)
+
+    for translation in translations:
+        for i in range(len(ranged_seeds)):
+            var seed = int(ranged_seeds[i])
+            for t in translation:
+                t = t.split(" ")
+                if seed >= int(t[1]) and seed <= int(t[1]) + int(t[2]):
+                    ranged_seeds[i] = int(t[0]) + int(seed) - int(t[1])
+                    break
+
+    print(min(ranged_seeds))
+    return min(ranged_seeds)
+
+
+aoc_5_2()
