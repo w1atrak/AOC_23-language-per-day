@@ -8,7 +8,6 @@ using namespace std;
 
 int aoc_11_1()
 {
-    string input = "";
     int rows = 0, cols = 0;
     vector<pair<int, int>> galaxies;
     set<int> not_empty_rows, not_empty_cols;
@@ -19,7 +18,6 @@ int aoc_11_1()
         string line;
         while (getline(file, line))
         {
-            input += line;
             cols = line.length();
             for (int i = 0; i < cols; i++)
             {
@@ -33,6 +31,9 @@ int aoc_11_1()
             rows++;
         }
         file.close();
+    }
+    else{
+        return 0;
     }
 
     int distance_sum = 0;
